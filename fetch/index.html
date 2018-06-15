@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AJAX</title>
+  </head>
+
+  <body>
+    <h1>Learn AJAX</h1>
+    <div id="output">
+    </div>
+    <button id="trigger">Get a Joke</button>
+    <script type="text/javascript">
+
+      var joker = document.querySelector('#trigger')
+      joker.addEventListener("click", loadJoke);
+      var output = document.getElementById("output");
+
+      function loadJoke(){
+        var url = "https://api.chucknorris.io/jokes/random";
+        
+        // fetch('https://api.chucknorris.io/jokes/random').then(function(response){
+        //   response.text().then(function(text){
+        //     console.log(text);
+        //   })
+        // });
+        // }
+
+          fetch('https://api.chucknorris.io/jokes/random').then(function(response){
+            return response.json();
+          }).then(function(json){
+            console.log(json);
+            let html = '<div><img src="' + json.icon_url + '" alt="Chuck Norris" height="100" width="100"></div><div>' + json.value + '</div>' ;
+            document.querySelector('#output').innerHTML = html;
+          }).catch(function(error){
+            console.log(error);
+          })
+          }
+        
+
+    </script>
+  </body>
+</html>
