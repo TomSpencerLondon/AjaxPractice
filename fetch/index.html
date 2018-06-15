@@ -26,15 +26,29 @@
         // });
         // }
 
-          fetch('https://api.chucknorris.io/jokes/random').then(function(response){
-            return response.json();
-          }).then(function(json){
-            console.log(json);
-            let html = '<div><img src="' + json.icon_url + '" alt="Chuck Norris" height="100" width="100"></div><div>' + json.value + '</div>' ;
-            document.querySelector('#output').innerHTML = html;
-          }).catch(function(error){
+           fetch('https://api.chucknorris.io/jokes/random').then(resJSON)
+          .then(renderResponse)
+          .catch(function(error){
             console.log(error);
           })
+
+          function resJSON(response){
+              return response.json();
+          }
+
+          function renderResponse(json){
+            document.querySelector('#output').innerHTML = '<div><img src="' + json.icon_url + '" alt="Chuck Norris" height="100" width="100"></div><div>' + json.value + '</div>';
+          }
+
+          // fetch('https://api.chucknorris.io/jokes/random').then(function(response){
+          //   return response.json();
+          // }).then(function(json){
+          //   console.log(json);
+          //   let html = '<div><img src="' + json.icon_url + '" alt="Chuck Norris" height="100" width="100"></div><div>' + json.value + '</div>' ;
+          //   document.querySelector('#output').innerHTML = html;
+          // }).catch(function(error){
+          //   console.log(error);
+          // })
           }
         
 
